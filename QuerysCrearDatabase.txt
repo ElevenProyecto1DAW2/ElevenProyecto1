@@ -1,0 +1,49 @@
+//Creamos base de datos
+create DATABASE Proyecto1Eleven;
+use Proyecto1Eleven;
+//Empezaremos a crear tablas de base de datos
+CREATE TABLE Usuario(
+	id_Usuario int(10) NOT NULL UNIQUE,
+	Nombre_Usuario varchar(20)not null,
+    Contra_Usu varchar(20) not null,
+    TipoUsuario varchar(20) not null DEFAULT 'Basico',
+    CONSTRAINT Usuario_Pk PRIMARY KEY (id_Usuario)
+);
+CREATE TABLE Sala (
+	Id_Sala int(10) NOT NULL UNIQUE,
+    Numero_Sala int(3) null,
+    Tipo_Sala varchar(15) not null,
+    Disponible varchar(5) not null DEFAULT 'true',
+    CONSTRAINT Sala_Pk PRIMARY KEY (Id_Sala)
+);
+CREATE TABLE Equipos (
+	Id_Equipo int(10) NOT NULL UNIQUE,
+    Tipo_Equipo varchar(15) not null,
+    Disponible varchar(5) not null,
+    CONSTRAINT Equipos_Pk PRIMARY KEY (Id_Equipo)
+);
+CREATE TABLE Usuario_Sala (
+	Id_UsuSala int(10) not null UNIQUE,
+    Id_Usuario int(10) not null,
+    Id_sala int(10) not null,
+    Fecha_ini datetime,
+    Fecha_fin datetime,
+    CONSTRAINT Pk_UsuSala PRIMARY KEY (Id_UsuSala)
+);
+CREATE TABLE Usuario_Equipo (
+Id_Usu_Equipo int(10) not null UNIQUE,
+ Id_Usuario int(10) not null,
+ Id_Equipo int(10) not null,
+ Fecha_ini datetime not null,
+ Fecha_fin datetime null,
+ CONSTRAINT Pk_UsuEquipo PRIMARY KEY (Id_Usu_Equipo) 
+);
+//Creamos las FOREIGN KEYS
+alter table usuario_equipo
+add CONSTRAINT UsuIdUsuEquipo_FK FOREIGN KEY (Id_Usuario) REFERENCES usuario(id_Usuario);
+alter table usuario_sala
+add CONSTRAINT UsuIdUsuSala_FK FOREIGN KEY (Id_Usuario) REFERENCES usuario(id_Usuario);
+alter table usuario_equipo
+add CONSTRAINT SalaIdEquipo_FK FOREIGN KEY (Id_Equipo) REFERENCES equipos(id_Equipo);
+alter table usuario_sala
+add CONSTRAINT SalaIdSala_FK FOREIGN KEY (Id_sala) REFERENCES sala(id_Sala);
