@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Casal Eleven</title>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css">
-	<meta charset="utf-8">
+	<title></title>
 </head>
 <body>
-
+<form action="login.proc.php" method="POST">
+	<p>Usuario: </p>
+	<input type="text" name="user">
+	<p>Contraseña: </p>
+	<input type="text" name="contra"><br><br>
+	<input type="submit" name="Enviar" value="Enviar">
+</form>
 </body>
 </html>
