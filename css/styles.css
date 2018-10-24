@@ -1,3 +1,48 @@
 html{
-	background-color: red;
+	background-color: white;
+}
+.menu {
+	height: 150px;
+	width: 100%;
+	border: 3px solid;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: white;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-family: Impact;
+	font-size: 60px;
+	text-align: center;
+	background:linear-gradient(60deg, #FAFAFA 150px,#190707 180px, #FF0000);}
+}
+.cuadrotexto{
+	width: 100%;
+	border: 3px solid;
+	margin: auto;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: black;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-family: Arial;
+	font-size: 70%;	
+	border-style: solid;
+    border-width: 5px;
+}
+.cuadro-central {
+	height: 300%;
+	width: 80%;
+	border: 0px solid;
+	margin: auto;
+	color: black;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 15px;
+	padding: 15px;
+}
+.mapa{
+	display:block;
+	margin:auto;
+}
+p {
+	font-size: 200%;
+	font-family: arial;
+	text-align: justify;
 }
