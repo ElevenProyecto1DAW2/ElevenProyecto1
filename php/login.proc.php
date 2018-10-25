@@ -1,5 +1,4 @@
 <?php
-
 //conectamos a la BD 1819_exemple
 	$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
 	
@@ -17,7 +16,4 @@ if ($_REQUEST['user'] == $categoria['Nombre_Usuario'] && $_REQUEST['contra'] == 
 	echo "El usuario o contraseña son incorrectos";
 	echo "<a href='index.php'>Pulsa aqui para volver</a>";
 }
-
-
-
 ?>
