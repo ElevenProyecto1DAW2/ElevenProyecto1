@@ -14,6 +14,6 @@ if ($_REQUEST['user'] == $categoria['Nombre_Usuario'] && $_REQUEST['contra'] == 
 	header('Location: correcto.php');
 } else {
 	echo "El usuario o contraseña son incorrectos";
-	echo "<a href='index.php'>Pulsa aqui para volver</a>";
+	echo "<a href='../index.php'>Pulsa aqui para volver</a>";
 }
 ?>
