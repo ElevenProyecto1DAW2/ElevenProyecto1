@@ -11,9 +11,11 @@
 $query = mysqli_query($link, "SELECT * FROM usuario WHERE Nombre_Usuario LIKE '$_REQUEST[user]'");
 $categoria=mysqli_fetch_array($query);
 if ($_REQUEST['user'] == $categoria['Nombre_Usuario'] && $_REQUEST['contra'] == $categoria['Contra_Usu']) {
-	header('Location: correcto.php');
+
+	$hola=$categoria["Nombre_Usuario"];
+	header("Location: recursos.php?usu=$hola");
 } else {
 	echo "El usuario o contraseña son incorrectos";
-	echo "<a href='index.php'>Pulsa aqui para volver</a>";
+	echo "<a href='../index.php'>Pulsa aqui para volver</a>";
 }
 ?>
