@@ -92,4 +92,18 @@ form{
 	height: 200px;
 	padding-left: 100px;
 	padding: 65px;
+	float: left;
+}
+.filtrando {
+	float: left;
+	width: 300%;
+	height: 70%;
+	padding: 60%;
+	border-width: 10px;
+	border-style: ridge;
+	margin-left: 150%;
+	margin-top: -54%;
+}
+.filtrando p {
+	margin-top: 0%;
 }
