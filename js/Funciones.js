@@ -1,0 +1,3 @@
+function OcultarMostrarFiltro(){
+	alert("Hola");
+}
