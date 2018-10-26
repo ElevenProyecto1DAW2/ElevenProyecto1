@@ -75,7 +75,7 @@ form{
 	background-color: #352E2E;
 	position: absolute;
 	float: left;
-	width: 92%;
+	width: 87%;
 	height: 90%;
 	border-width: 10px;
 	border-style: ridge;
@@ -96,11 +96,14 @@ form{
 }
 .filtrando {
 	float: left;
-	width: 350%;
+	width: 300%;
 	height: 70%;
-	padding: 65px;
+	padding: 60%;
 	border-width: 10px;
 	border-style: ridge;
 	margin-left: 150%;
-	margin-top: -54%
+	margin-top: -54%;
+}
+.filtrando p {
+	margin-top: 0%;
 }
