@@ -38,7 +38,6 @@ html{
 	border-width: 10px;
 	float: left;
 	padding-left: 15px;
-	background-color: #352E2E;
 }
 .mapa{
 	display:block;
@@ -48,10 +47,6 @@ p {
 	font-size: 150%;
 	font-family: arial;
 	text-align: center;
-	color: white;
-}
-h1 {
-	color: white;
 }
 .Login{
 	font-size: 50%;
@@ -64,31 +59,8 @@ form{
 }
 .inicia_sesion{
 	font-size: 400%;
-	padding-left: 20px;
 }
 .global{
 	width: 100%;
-	padding: 3px;
-}
-.filtro {
-	background-color: #352E2E;
-	position: absolute;
-	float: left;
-	width: 87%;
-	height: 90%;
-	border-width: 10px;
-	border-style: ridge;
-	padding-left: 0px;
-}
-.total_recursos {
-	width: 80%;
-	padding-left: 100px;
-	padding: 65px;
-	padding-top: 20px;
-}
-.filtronuevo {
-	width: 200px;
-	height: 200px;
-	padding-left: 100px;
-	padding: 65px;
+	padding: 3px
 }
