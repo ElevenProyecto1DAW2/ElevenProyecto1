@@ -1,46 +1,172 @@
-create DATABASE Proyecto1Eleven;
-use Proyecto1Eleven;
-CREATE TABLE Usuario(
-	id_Usuario int(10) NOT NULL AUTO_INCREMENT UNIQUE,
-	Nombre_Usuario varchar(20)not null,
-    Contra_Usu varchar(20) not null,
-    TipoUsuario varchar(20) not null DEFAULT 'Basico',
-    CONSTRAINT Usuario_Pk PRIMARY KEY (id_Usuario)
-);
-CREATE TABLE Sala (
-	Id_Sala int(10) NOT NULL AUTO_INCREMENT UNIQUE,
-    Numero_Sala int(3) null,
-    Tipo_Sala varchar(15) not null,
-    Disponible varchar(5) not null DEFAULT 'true',
-    CONSTRAINT Sala_Pk PRIMARY KEY (Id_Sala)
-);
-CREATE TABLE Equipos (
-	Id_Equipo int(10) NOT NULL AUTO_INCREMENT UNIQUE,
-    Tipo_Equipo varchar(15) not null,
-    Disponible varchar(5) not null,
-    CONSTRAINT Equipos_Pk PRIMARY KEY (Id_Equipo)
-);
-CREATE TABLE Usuario_Sala (
-	Id_UsuSala int(10) not null AUTO_INCREMENT UNIQUE,
-    Id_Usuario int(10) not null,
-    Id_sala int(10) not null,
-    Fecha_ini datetime,
-    Fecha_fin datetime,
-    CONSTRAINT Pk_UsuSala PRIMARY KEY (Id_UsuSala)
-);
-CREATE TABLE Usuario_Equipo (
-Id_Usu_Equipo int(10) not null AUTO_INCREMENT UNIQUE,
- Id_Usuario int(10) not null,
- Id_Equipo int(10) not null,
- Fecha_ini datetime not null,
- Fecha_fin datetime null,
- CONSTRAINT Pk_UsuEquipo PRIMARY KEY (Id_Usu_Equipo) 
-);
-alter table usuario_equipo
-add CONSTRAINT UsuIdUsuEquipo_FK FOREIGN KEY (Id_Usuario) REFERENCES usuario(id_Usuario);
-alter table usuario_sala
-add CONSTRAINT UsuIdUsuSala_FK FOREIGN KEY (Id_Usuario) REFERENCES usuario(id_Usuario);
-alter table usuario_equipo
-add CONSTRAINT SalaIdEquipo_FK FOREIGN KEY (Id_Equipo) REFERENCES equipos(id_Equipo);
-alter table usuario_sala
-add CONSTRAINT SalaIdSala_FK FOREIGN KEY (Id_sala) REFERENCES sala(id_Sala);
+﻿-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Temps de generació: 25-10-2018 a les 18:18:11
+-- Versió del servidor: 10.1.35-MariaDB
+-- Versió de PHP: 7.2.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de dades: `proyecto1eleven`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `equipos_sala`
+--
+
+CREATE TABLE `equipos_sala` (
+  `Id_equipo_sala` int(10) NOT NULL,
+  `tipo_equipo_sala` varchar(25) NOT NULL,
+  `equipo_sala` varchar(10) NOT NULL,
+  `Disponible` varchar(5) NOT NULL DEFAULT 'true'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `incidencias`
+--
+
+CREATE TABLE `incidencias` (
+  `Id_incidencias` int(10) NOT NULL,
+  `id_sala` int(10) NOT NULL,
+  `id_usuario` int(10) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `descripcion` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id_Usuario` int(10) NOT NULL,
+  `Nombre_Usuario` varchar(20) NOT NULL,
+  `Contra_Usu` varchar(20) NOT NULL,
+  `TipoUsuario` varchar(20) NOT NULL DEFAULT 'Basico'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Bolcament de dades per a la taula `usuario`
+--
+
+INSERT INTO `usuario` (`id_Usuario`, `Nombre_Usuario`, `Contra_Usu`, `TipoUsuario`) VALUES
+(1, 'eric', '123', 'administrador'),
+(2, 'Dani', '1234', 'Basico'),
+(3, 'adri ', 'ttbucles', 'Basico'),
+(4, 'Dani', '1234', 'Basico'),
+(5, 'adri ', 'ttbucles', 'Basico');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `usuario_equipo_sala`
+--
+
+CREATE TABLE `usuario_equipo_sala` (
+  `Id_usu_equipo_sala` int(10) NOT NULL,
+  `id_usuario` int(10) DEFAULT NULL,
+  `id_equipo` int(10) NOT NULL,
+  `fecha_ini` datetime NOT NULL,
+  `fecha_fin` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Índexs per a les taules bolcades
+--
+
+--
+-- Índexs per a la taula `equipos_sala`
+--
+ALTER TABLE `equipos_sala`
+  ADD PRIMARY KEY (`Id_equipo_sala`);
+
+--
+-- Índexs per a la taula `incidencias`
+--
+ALTER TABLE `incidencias`
+  ADD PRIMARY KEY (`Id_incidencias`),
+  ADD KEY `usuIncidencias_FK` (`id_usuario`),
+  ADD KEY `equiposalaIncidencias_FK` (`id_sala`);
+
+--
+-- Índexs per a la taula `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_Usuario`);
+
+--
+-- Índexs per a la taula `usuario_equipo_sala`
+--
+ALTER TABLE `usuario_equipo_sala`
+  ADD PRIMARY KEY (`Id_usu_equipo_sala`),
+  ADD KEY `UsuEquipoSala_FK` (`id_usuario`),
+  ADD KEY `usuEquipoSalados_FK` (`id_equipo`);
+
+--
+-- AUTO_INCREMENT per les taules bolcades
+--
+
+--
+-- AUTO_INCREMENT per la taula `equipos_sala`
+--
+ALTER TABLE `equipos_sala`
+  MODIFY `Id_equipo_sala` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la taula `incidencias`
+--
+ALTER TABLE `incidencias`
+  MODIFY `Id_incidencias` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la taula `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_Usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT per la taula `usuario_equipo_sala`
+--
+ALTER TABLE `usuario_equipo_sala`
+  MODIFY `Id_usu_equipo_sala` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restriccions per a les taules bolcades
+--
+
+--
+-- Restriccions per a la taula `incidencias`
+--
+ALTER TABLE `incidencias`
+  ADD CONSTRAINT `equiposalaIncidencias_FK` FOREIGN KEY (`id_sala`) REFERENCES `equipos_sala` (`Id_equipo_sala`),
+  ADD CONSTRAINT `usuIncidencias_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_Usuario`);
+
+--
+-- Restriccions per a la taula `usuario_equipo_sala`
+--
+ALTER TABLE `usuario_equipo_sala`
+  ADD CONSTRAINT `UsuEquipoSala_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_Usuario`),
+  ADD CONSTRAINT `Usuequipo_sala_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_Usuario`),
+  ADD CONSTRAINT `usuEquipoSalados_FK` FOREIGN KEY (`id_equipo`) REFERENCES `equipos_sala` (`Id_equipo_sala`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
