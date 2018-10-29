@@ -29,7 +29,7 @@
 								$Sql="SELECT DISTINCT(tipo_equipo_sala) from equipos_sala";
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<option value='$query[tipo_equipo_sala]'>$query[tipo_equipo_sala]</option>";
+									echo "<option value='".utf8_encode($query[tipo_equipo_sala])."'>".utf8_encode($query[tipo_equipo_sala])."</option>";
 								}
 								echo "<input type='hidden' name='usu' value='$_REQUEST[usu]'>";
 							?>
@@ -50,7 +50,7 @@
 								$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<p style='color:white;'>$query[Id_equipo_sala] $query[tipo_equipo_sala]</p>";
+									echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala] <input type='submit' name='Enviar' value='Reservar'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'></form><br/>";
 								}						
 						?>
 					</div>
