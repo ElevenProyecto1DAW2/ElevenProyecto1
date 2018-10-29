@@ -1,6 +1,6 @@
 <?php
 //conectamos a la BD 1819_exemple
-	$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
+	$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 	
 	if (!$link) {
 	    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
