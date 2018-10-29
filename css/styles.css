@@ -75,9 +75,9 @@ form{
 	background-color: #352E2E;
 	position: absolute;
 	float: left;
-	width: 87%;
+	width: 90%;
 	height: 90%;
-	border-width: 10px;
+	border-width: 10%;
 	border-style: ridge;
 	padding-left: 0px;
 }
@@ -88,21 +88,22 @@ form{
 	padding-top: 20px;
 }
 .filtronuevo {
-	width: 200px;
-	height: 200px;
-	padding-left: 100px;
-	padding: 65px;
+	width: 17%;
+	height: 17%;
+	padding-left: 10%;
+	padding: 0%;
 	float: left;
+	margin-left: 5%;
 }
 .filtrando {
 	float: left;
-	width: 300%;
-	height: 70%;
-	padding: 60%;
+	width: 25%;
+	height: 10%;
+	padding: 15%;
 	border-width: 10px;
 	border-style: ridge;
-	margin-left: 150%;
-	margin-top: -54%;
+	margin-left: 7%;
+	margin-top: 0%
 }
 .filtrando p {
 	margin-top: 0%;

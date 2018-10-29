@@ -16,7 +16,7 @@
 				<div class="filtronuevo">
 					<form method="POST" name="FiltroRecursos" action="recursos.php">
 						<br>
-						<select style="margin-left: 24%; width: 50%; height: 20%;" name="Filtro" id="SeleccionSalaEquipo">
+						<select style="margin-left: 5%; width: 90%; height: 20%;" name="Filtro" id="SeleccionSalaEquipo">
 							<option value="-"> - </option>
 							<?php
 								$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
@@ -36,6 +36,7 @@
 						</select><br><br>
 						<input style="margin-left: 35%; margin-bottom: 5%;" type="submit" name="Filtrado" value="Filtrar">
 					</form>
+				</div>
 					<div class="filtrando">
 						<?php
 							
@@ -55,6 +56,7 @@
 						?>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</body>

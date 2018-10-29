@@ -12,4 +12,5 @@
 	ForEach ($Sql2 as $query) {
 		echo "$query[Numero_Sala] $query[Tipo_Sala]";
 	}
+
 ?>
