@@ -10,6 +10,6 @@
 	$Sql="SELECT * FROM sala where Tipo_Sala='".$Filtro."'";
 	$Sql2=mysqli_query($link,$Sql);
 	ForEach ($Sql2 as $query) {
-		echo "$query[Numero_Sala] $query[Tipo_Sala]";
+		echo "$query[Id_incidencias] $query[Tipo_Sala]";
 	}
 ?>
