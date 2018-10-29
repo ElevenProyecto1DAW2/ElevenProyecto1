@@ -19,7 +19,7 @@
 						<select style="margin-left: 5%; width: 90%; height: 20%;" name="Filtro" id="SeleccionSalaEquipo">
 							<option value="-"> - </option>
 							<?php
-								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+								$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
 								if (!$link) {
 									echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
 									echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
@@ -29,7 +29,7 @@
 								$Sql="SELECT DISTINCT(tipo_equipo_sala) from equipos_sala";
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<option value='".utf8_encode($query[tipo_equipo_sala])."'>".utf8_encode($query[tipo_equipo_sala])."</option>";
+									echo "<option value='$query[tipo_equipo_sala]'>uiuiuiuuuiuiuuiuiuiuuiuiuiiuiuiuui$query[tipo_equipo_sala]</option>";
 								}
 								echo "<input type='hidden' name='usu' value='$_REQUEST[usu]'>";
 							?>
@@ -39,26 +39,24 @@
 				</div>
 					<div class="filtrando">
 						<?php
-								if (isset($_REQUEST['Filtro'])) {
-									$Filtro="$_REQUEST[Filtro]";
-									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
-								}else{
-									$Sql="SELECT * FROM equipos_sala";
-								}
-								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+							
+								$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
 								if (!$link) {
 								    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
 								    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
 								    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
 								    exit;
-								}								
+								}
+								$Filtro="$_REQUEST[Filtro]";
+								$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala] <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'></form><br/>";
+									echo "<p style='color:white;'>$query[Id_equipo_sala] $query[tipo_equipo_sala]</p>";
 								}						
 						?>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</body>
