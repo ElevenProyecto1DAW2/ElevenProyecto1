@@ -5,21 +5,23 @@
 		<meta charset="utf-8">
 		<title>Recursos</title>
 		<script type="text/javascript" src="../js/Funciones.js"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+
 	</head>
 	<body>
 		<div class="total_recursos">
 			<div class="filtro">
-				<h1 style="text-align: center;">Bienvenido <?php echo "$_REQUEST[usu]"; ?>
 					
 				</h1>
-				<p>Filtro para filtrar tomaa yaa!</p>
+				<p>Incidencias nuevas</p>
 				<div class="filtronuevo">
-					<form method="POST" name="FiltroRecursos" action="recursos.php">
+					<form method="POST" name="FiltroRecursos" action="recursosAdministrador.php">
 						<br>
 						<select style="margin-left: 5%; width: 90%; height: 20%;" name="Filtro" id="SeleccionSalaEquipo">
 							<option value="-"> - </option>
 							<?php
-								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+								$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
 								if (!$link) {
 									echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
 									echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
@@ -29,7 +31,7 @@
 								$Sql="SELECT DISTINCT(tipo_equipo_sala) from equipos_sala";
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<option value='".utf8_encode($query[tipo_equipo_sala])."'>".utf8_encode($query[tipo_equipo_sala])."</option>";
+									echo "<option value='$query[tipo_equipo_sala]'>$query[tipo_equipo_sala]</option>";
 								}
 								echo "<input type='hidden' name='usu' value='$_REQUEST[usu]'>";
 							?>
@@ -37,25 +39,27 @@
 						<input style="margin-left: 35%; margin-bottom: 5%;" type="submit" name="Filtrado" value="Filtrar">
 					</form>
 				</div>
+
 					<div class="filtrando">
 						<?php
-								if (isset($_REQUEST['Filtro'])) {
-									$Filtro="$_REQUEST[Filtro]";
-									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
-								}else{
-									$Sql="SELECT * FROM equipos_sala";
-								}
+							
 								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 								if (!$link) {
 								    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
 								    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
 								    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
 								    exit;
-								}								
+								}
+								$Sql="SELECT * FROM incidencias"; 
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala] <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'></form><br/>";
-								}						
+									$incidencia=$query['Id_incidencias'];
+									$informacion=$query['Id_incidencias'];
+									echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:red; text-decoration:none; float: right;' href='informacion.php;'> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.php?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+
+								}	
+
+
 						?>
 					</div>
 				</div>
