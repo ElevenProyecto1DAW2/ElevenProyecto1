@@ -16,3 +16,19 @@ function ControlarUsu(){
 function Reservar(){
 	window.location.href='../php/reservar.proc.php?num='+document.getElementById("BotonReserva").value+'&user='+document.getElementById("usu").value+'&idUsu='+document.getElementById("IdUsu").value;
 }
+function Liberar(){
+	window.location.href='../php/reservar.proc.php?num='+document.getElementById("BotonReserva").value+'&user='+document.getElementById("usu").value+'&idUsu='+document.getElementById("IdUsu").value;
+}
+function aparecer2(){
+	document.getElementById('SeleccionSalaEquipo').style.display='none';
+	document.getElementById('SeleccionSala').style.display='none';
+	if (document.getElementById('filtro2').value=="equipos") {
+		document.getElementById('SeleccionSalaEquipo').style.display='block';
+	}
+	if (document.getElementById('filtro2').value=="salas") {
+		document.getElementById('SeleccionSala').style.display='block';
+	}
+}
+function Reservados() {
+	window.location.assign('../php/reservados.php?usu='+document.getElementById("usu").value+'&IdUsu='+document.getElementById("IdUsu").value);
+}

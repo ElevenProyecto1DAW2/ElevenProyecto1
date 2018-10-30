@@ -33,10 +33,17 @@
 				echo "<h1>$query[tipo_equipo_sala]</h1>";
 			echo "</div>";
 			echo "<div class='reserva_boton'>";
+			if ($query['Disponible']=='false') {
+				echo "<button id='BotonReserva' value='$Id' onclick='Liberar()'>Liberar</button>";
+				//echo "<button >Volver</button>";
+				echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
+				echo "<input type='hidden' id='usu' value='$usu'>";
+			}else{
 				echo "<button id='BotonReserva' value='$Id' onclick='Reservar()'>Reservar</button>";
 				//echo "<button >Volver</button>";
 				echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
 				echo "<input type='hidden' id='usu' value='$usu'>";
+			}
 			echo "</div>";
 			echo "<div class='descripcion'>";
 			$Nueva_var=utf8_encode($query["descripcion"]);

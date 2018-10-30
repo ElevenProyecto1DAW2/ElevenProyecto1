@@ -16,7 +16,11 @@ ForEach($Sql as $query){
 	if ($query['Disponible']=='true') {
 		$Sql="INSERT INTO usuario_equipo_sala(id_usuario,id_equipo,fecha_ini) VALUES('".$IdUsu."','".$IdRecurso."',NOW())";
 		$Sql2="UPDATE equipos_sala SET Disponible='false' WHERE Id_equipo_sala=$IdRecurso";
-		echo "$Sql2";
+		mysqli_query($link,$Sql);
+		mysqli_query($link,$Sql2);
+	}else{
+		$Sql="UPDATE usuario_equipo_sala SET fecha_fin=NOW() WHERE id_usuario=$IdUsu and id_equipo=$IdRecurso and fecha_fin is null";
+		$Sql2="UPDATE equipos_sala SET Disponible='true' WHERE Id_equipo_sala=$IdRecurso";
 		mysqli_query($link,$Sql);
 		mysqli_query($link,$Sql2);
 	}
