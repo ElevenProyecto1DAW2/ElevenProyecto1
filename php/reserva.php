@@ -9,6 +9,7 @@
 	<body>
 		<div class="reserva_total">
 			<?php
+			$IdUsu=$_REQUEST['IdUsu'];
 			$usu=$_REQUEST['Usuario'];
 			$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 			if (!$link) {
@@ -34,6 +35,7 @@
 			echo "<div class='reserva_boton'>";
 				echo "<button id='BotonReserva' value='$Id' onclick='Reservar()'>Reservar</button>";
 				//echo "<button >Volver</button>";
+				echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
 				echo "<input type='hidden' id='usu' value='$usu'>";
 			echo "</div>";
 			echo "<div class='descripcion'>";

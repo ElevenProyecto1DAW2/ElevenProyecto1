@@ -15,9 +15,19 @@
 				<div class="filtronuevo">
 					<form method="POST" name="FiltroRecursos" action="recursos.php">
 						<br>
-						<select style="margin-left: 5%; width: 90%; height: 20%;" name="Filtro" id="SeleccionSalaEquipo">
+						<select style="margin-left: 5%; width: 90%; height: 20%;" id="filtro2" onchange="aparecer2()">
+							<option value="nada"> - </option>
+							<option value="equipos"> equipos</option>
+							<option value="salas"> salas</option>
+						</select><br><br>
+						<select style="margin-left: 5%; width: 90%; height: 20%; display: none;" name="Filtro" id="SeleccionSalaEquipo">
 							<option value="-"> - </option>
 							<?php
+								if (isset($_REQUEST["id"])) {
+									$IdUsu=$_REQUEST["id"];
+								}else {
+									$IdUsu=$_REQUEST["IdUsu"];
+								}
 								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 								if (!$link) {
 									echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -25,12 +35,37 @@
 									echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
 									exit;
 								}
-								$Sql="SELECT DISTINCT(tipo_equipo_sala) from equipos_sala";
+								$Sql="SELECT DISTINCT(tipo_equipo_sala) from equipos_sala WHERE equipo_sala LIKE 'equipo'";
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
 									echo "<option value='".utf8_encode($query[tipo_equipo_sala])."'>".utf8_encode($query[tipo_equipo_sala])."</option>";
 								}
 								echo "<input type='hidden' name='usu' value='$_REQUEST[usu]'>";
+								echo "<input type='hidden' name='IdUsu' value='".$IdUsu."'>";
+							?>
+						</select><br><br>
+						<select style="margin-left: 5%; width: 90%; height: 20%; display: none;" name="Filtro3" id="SeleccionSala">
+							<option value="-"> - </option>
+							<?php
+								if (isset($_REQUEST["id"])) {
+									$IdUsu=$_REQUEST["id"];
+								}else {
+									$IdUsu=$_REQUEST["IdUsu"];
+								}
+								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+								if (!$link) {
+									echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+									echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+									echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+									exit;
+								}
+								$Sql="SELECT DISTINCT(tipo_equipo_sala) from equipos_sala WHERE equipo_sala LIKE 'sala'";
+								$Sql2=mysqli_query($link,$Sql);
+								ForEach ($Sql2 as $query) {
+									echo "<option value='".utf8_encode($query[tipo_equipo_sala])."'>".utf8_encode($query[tipo_equipo_sala])."</option>";
+								}
+								echo "<input type='hidden' name='usu' value='$_REQUEST[usu]'>";
+								echo "<input type='hidden' name='IdUsu' value='".$IdUsu."'>";
 							?>
 						</select><br><br>
 						<input style="margin-left: 35%; margin-bottom: 5%;" type="submit" name="Filtrado" value="Filtrar">
@@ -38,6 +73,11 @@
 				</div>
 					<div class="filtrando">
 						<?php
+								if (isset($_REQUEST["id"])) {
+									$IdUsu=$_REQUEST["id"];
+								}else {
+									$IdUsu=$_REQUEST["IdUsu"];
+								}
 								if (isset($_REQUEST['Filtro'])) {
 									if ($_REQUEST['Filtro']=="-") {
 										$Sql="SELECT * FROM equipos_sala";
@@ -57,7 +97,9 @@
 								}								
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala]<br> <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'></form><br/>";
+									if ($query['Disponible']=='true') {
+										echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala]<br> <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'><input type='hidden' name='IdUsu' value='".$IdUsu."'></form><br/>";
+									}
 								}						
 						?>
 					</div>
