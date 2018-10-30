@@ -73,18 +73,9 @@
 				</div>
 					<div class="filtrando">
 						<?php
-								if (isset($_REQUEST["id"])) {
-									$IdUsu=$_REQUEST["id"];
-								}else {
-									$IdUsu=$_REQUEST["IdUsu"];
-								}
 								if (isset($_REQUEST['Filtro'])) {
-									if ($_REQUEST['Filtro']=="-") {
-										$Sql="SELECT * FROM equipos_sala";
-									}else {
 									$Filtro="$_REQUEST[Filtro]";
 									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
-									}
 								}else{
 									$Sql="SELECT * FROM equipos_sala";
 								}
