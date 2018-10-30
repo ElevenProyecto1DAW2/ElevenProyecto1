@@ -1,6 +1,6 @@
 <?php
 //conectamos a la BD 1819_exemple
-	$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
+	$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 	
 	if (!$link) {
 	    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -12,10 +12,13 @@ $query = mysqli_query($link, "SELECT * FROM usuario WHERE Nombre_Usuario LIKE '$
 $categoria=mysqli_fetch_array($query);
 if ($_REQUEST['user'] == $categoria['Nombre_Usuario'] && $_REQUEST['contra'] == $categoria['Contra_Usu']) {
 	if ($categoria['TipoUsuario']=="Administrador") {
+		$Id=$categoria["id_Usuario"];
 		$hola=$categoria["Nombre_Usuario"];
-		header("Location: recursosAdministrador.php?usu=$hola");
+		header("Location: recursosAdministrador.php?usu=$hola&id=$Id");
 	}else{
+		$Id=$categoria["id_Usuario"];
 		$hola=$categoria["Nombre_Usuario"];
-		header("Location: recursos.php?usu=$hola");
+		header("Location: recursos.php?usu=$hola&id=$Id");
 	}
+}
 ?>

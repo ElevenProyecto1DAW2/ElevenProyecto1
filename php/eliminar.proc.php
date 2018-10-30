@@ -6,10 +6,8 @@
 	    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
 	    exit;
 	}
-	$Filtro="$_REQUEST[Filtro]";
-	$Sql="SELECT * FROM sala where Tipo_Sala='".$Filtro."'";
-	$Sql2=mysqli_query($link,$Sql);
-	ForEach ($Sql2 as $query) {
-		echo "$query[Numero_Sala] $query[Tipo_Sala]";
-	}
+		$id=$_REQUEST['eliminar'];
+	$sql="DELETE FROM incidencias where Id_incidencias=$id";
+	mysqli_query($link,$sql);
+	header("location: recursosAdministrador.php");
 ?>
