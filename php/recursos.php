@@ -39,8 +39,12 @@
 					<div class="filtrando">
 						<?php
 								if (isset($_REQUEST['Filtro'])) {
+									if ($_REQUEST['Filtro']=="-") {
+										$Sql="SELECT * FROM equipos_sala";
+									}else {
 									$Filtro="$_REQUEST[Filtro]";
 									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
+									}
 								}else{
 									$Sql="SELECT * FROM equipos_sala";
 								}
@@ -53,7 +57,7 @@
 								}								
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala] <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'></form><br/>";
+									echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala]<br> <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'></form><br/>";
 								}						
 						?>
 					</div>
