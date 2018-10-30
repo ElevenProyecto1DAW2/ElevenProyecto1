@@ -4,13 +4,10 @@
 		<link rel="stylesheet" type="text/css" href="../css/styles.css">
 		<meta charset="utf-8">
 		<title>Reserva</title>
-		<script type="text/javascript" src="../js/Funciones.js"></script>
 	</head>
 	<body>
 		<div class="reserva_total">
 			<?php
-			$IdUsu=$_REQUEST['IdUsu'];
-			$usu=$_REQUEST['Usuario'];
 			$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 			if (!$link) {
 			    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -19,7 +16,7 @@
 			    exit;
 			}	
 			$Id=$_REQUEST['Recurso'];
-			$Sql="SELECT * FROM equipos_sala where Id_equipo_sala='".$Id."'";
+			$Sql="SELECT * FROM incidencias where descripcion";
 			$Sql2=mysqli_query($link,$Sql);
 			ForEach($Sql2 as $query){
 				if ($query['foto']!="") {
@@ -33,10 +30,7 @@
 				echo "<h1>$query[tipo_equipo_sala]</h1>";
 			echo "</div>";
 			echo "<div class='reserva_boton'>";
-				echo "<button id='BotonReserva' value='$Id' onclick='Reservar()'>Reservar</button>";
-				//echo "<button >Volver</button>";
-				echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
-				echo "<input type='hidden' id='usu' value='$usu'>";
+				echo "<button action='reservar.proc.php'>Reservar</button>";
 			echo "</div>";
 			echo "<div class='descripcion'>";
 			$Nueva_var=utf8_encode($query["descripcion"]);

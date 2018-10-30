@@ -9,8 +9,6 @@
 	<body>
 		<div class="reserva_total">
 			<?php
-			$IdUsu=$_REQUEST['IdUsu'];
-			$usu=$_REQUEST['Usuario'];
 			$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 			if (!$link) {
 			    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -19,7 +17,7 @@
 			    exit;
 			}	
 			$Id=$_REQUEST['Recurso'];
-			$Sql="SELECT * FROM equipos_sala where Id_equipo_sala='".$Id."'";
+			$Sql="SELECT incidencias.descripcion, equipos_sala.foto, equipos_sala.tipo_equipo_sala FROM equipos_sala inner join incidencias  on equipos_sala.Id_equipo_sala = incidencias.id_sala where Id_incidencias=".$Id;
 			$Sql2=mysqli_query($link,$Sql);
 			ForEach($Sql2 as $query){
 				if ($query['foto']!="") {
@@ -32,17 +30,18 @@
 			echo "<div class='titulo'>";
 				echo "<h1>$query[tipo_equipo_sala]</h1>";
 			echo "</div>";
-			echo "<div class='reserva_boton'>";
-				echo "<button id='BotonReserva' value='$Id' onclick='Reservar()'>Reservar</button>";
-				//echo "<button >Volver</button>";
-				echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
-				echo "<input type='hidden' id='usu' value='$usu'>";
-			echo "</div>";
+		}
+			?>
+			<div class='reserva_boton'>
+				<button id="BotonReserva" value="$Id" onclick="window.location.href='recursosAdministrador.php'" >Volver</button>
+			</div>
+			<?php
 			echo "<div class='descripcion'>";
 			$Nueva_var=utf8_encode($query["descripcion"]);
 				echo "<p>".$Nueva_var."</p>";
 			echo "</div>";
-			}
+				//echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
+				//echo "<input type='hidden' id='usu' value='$usu'>";
 			?>
 		</div>
 

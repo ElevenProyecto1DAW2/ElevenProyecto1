@@ -12,7 +12,6 @@
 				<h1 style="text-align: center;">Bienvenido <?php echo "$_REQUEST[usu]"; ?>
 					
 				</h1>
-				<p>Filtro para filtrar tomaa yaa!</p>
 				<div class="filtronuevo">
 					<form method="POST" name="FiltroRecursos" action="recursos.php">
 						<br>
@@ -54,7 +53,7 @@
 								}								
 								$Sql2=mysqli_query($link,$Sql);
 								ForEach ($Sql2 as $query) {
-									echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala] <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'></form><br/>";
+									echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala] <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'></form><br/>";
 								}						
 						?>
 					</div>

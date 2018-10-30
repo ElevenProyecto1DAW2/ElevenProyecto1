@@ -4,17 +4,20 @@
 	<title>Casal Eleven</title>
 	<link rel="stylesheet" type="text/css" href="./css/styles.css">
 	<meta charset="utf-8">
+	<script type="text/javascript" src="./js/Funciones.js">
+		
+	</script>
 </head>
 <body>
 	<div class="global">
 		<div class="menu"><h1 style="margin-top: 0px">Casal Eleven </h1></div>	
 	<div class="Login">
 		<h1 class="inicia_sesion" style="color: black;">Iniciar sesión</h1>
-<form style="text-align: center; width: 200px; height: 170px;" style="position: absolute;" action="./php/login.proc.php" method="POST" >
+<form style="text-align: center; width: 200px; height: 170px;" style="position: absolute;" name="Formulario" action="./php/login.proc.php" method="POST" onsubmit="return ControlarUsu()" >
 	<p style="color: black;">Usuario: </p>
-	<input size="15" type="text" name="user" required>
+	<input size="15" type="text" name="user">
 	<p style="color: black;">Contraseña: </p>
-	<input size="15" type="password" name="contra" required><br><br>
+	<input size="15" type="password" name="contra"><br><br>
 	<input style="padding-left: 3%;" type="submit" name="Enviar" value="Iniciar sesión"></div>	
 <br>
 	<div class="cuadro-central">

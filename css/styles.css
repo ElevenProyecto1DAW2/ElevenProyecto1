@@ -1,5 +1,5 @@
-html{
-	background-color: white;
+html {
+	background-color: #B8B8B8;
 }
 .menu {
 	height: 150px;
@@ -148,6 +148,7 @@ background-color: #352E2E;
 	border-style: ridge;
 	margin-left: 4%;
 	margin-top: 2%;	
+	margin-bottom: 2%;
 	background-color: #352E2E;
 }
 .titulo{
