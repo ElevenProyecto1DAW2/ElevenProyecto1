@@ -87,23 +87,27 @@
 								if (isset($_REQUEST['Filtro'])) {
 									if ($_REQUEST['Filtro']=="-") {
 										$Sql="SELECT * FROM equipos_sala";
+										$_REQUEST['Filtro']="";
 									}else {
 									$Filtro="$_REQUEST[Filtro]";
 									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
+										$noentrar=false;
+									$_REQUEST['Filtro']="";
 									}
 								}else{
 									$Sql="SELECT * FROM equipos_sala";
+									$_REQUEST['Filtro']="";
 								}
-								if (isset($_REQUEST['Filtro3'])) {
+								if ((isset($_REQUEST['Filtro3'])) && ($noentrar==true)) {
 									if ($_REQUEST['Filtro3']=="-") {
 										$Sql="SELECT * FROM equipos_sala";
+										$_REQUEST['Filtro3']="";
 									}else {
 									$Filtro="$_REQUEST[Filtro3]";
 									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
+									$_REQUEST['Filtro3']="";
 									}
-								}else{	
-									$Sql="SELECT * FROM equipos_sala";
-								} 	
+								}
 								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 								if (!$link) {
 								    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
