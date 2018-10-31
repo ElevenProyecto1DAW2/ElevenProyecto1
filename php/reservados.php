@@ -7,11 +7,7 @@
 		<script type="text/javascript" src="../js/Funciones.js"></script>
 	</head>
 	<body>
-		
-	<?php
-	echo "$_REQUEST[usu] $_REQUEST[IdUsu]";
-	?>
-
+	<button onclick="LogOut()">Log Out</button>
 		<div class="total_recursos">
 			<div class="filtro">
 				<h1 style="text-align: center;">
@@ -41,9 +37,9 @@
 								}
 								if (isset($_REQUEST['Filtro'])) {
 									$Filtro=$_REQUEST['Filtro'];
-									$Sql="SELECT * FROM usuario_equipo_sala inner join equipos_sala on equipos_sala.Id_equipo_sala = usuario_equipo_sala.id_equipo where usuario_equipo_sala.id_usuario=$IdUsu && equipo_sala.equipo_sala='".$Filtro."'";		
+									$Sql="SELECT * FROM usuario_equipo_sala inner join equipos_sala on equipos_sala.Id_equipo_sala = usuario_equipo_sala.id_equipo where usuario_equipo_sala.id_usuario=$IdUsu && equipo_sala.equipo_sala='".$Filtro."' & usuario_equipo_sala.fecha_fin is null";		
 								}else{
-									$Sql="SELECT * FROM usuario_equipo_sala inner join equipos_sala on equipos_sala.Id_equipo_sala = usuario_equipo_sala.id_equipo where usuario_equipo_sala.id_usuario=$IdUsu";
+									$Sql="SELECT * FROM usuario_equipo_sala inner join equipos_sala on equipos_sala.Id_equipo_sala = usuario_equipo_sala.id_equipo where usuario_equipo_sala.id_usuario=$IdUsu && usuario_equipo_sala.fecha_fin is null";
 								}
 								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
 								if (!$link) {
@@ -53,8 +49,12 @@
 								    exit;
 								}								
 								$Sql2=mysqli_query($link,$Sql);
-								ForEach ($Sql2 as $query) {
-										echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala]<br> <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'><input type='hidden' name='IdUsu' value='".$IdUsu."'></form><br/>";
+								if ((mysqli_num_rows($Sql2))>0) {
+									ForEach ($Sql2 as $query) {
+											echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala]<br> <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'><input type='hidden' name='IdUsu' value='".$IdUsu."'></form><br/>";
+									}
+								}else{
+									echo "<p>No tiene ningun recurso reservado ahora mismo</p>";
 								}						
 						?>
 					</div>

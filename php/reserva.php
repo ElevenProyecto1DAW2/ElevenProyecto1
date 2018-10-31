@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="../js/Funciones.js"></script>
 	</head>
 	<body>
+	<button onclick="LogOut()">Log Out</button>
 		<div class="reserva_total">
 			<?php
 			$IdUsu=$_REQUEST['IdUsu'];
@@ -33,10 +34,15 @@
 				echo "<h1>$query[tipo_equipo_sala]</h1>";
 			echo "</div>";
 			echo "<div class='reserva_boton'>";
+			if ($query['Disponible']=='true') {
 				echo "<button id='BotonReserva' value='$Id' onclick='Reservar()'>Reservar</button>";
-				//echo "<button >Volver</button>";
 				echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
 				echo "<input type='hidden' id='usu' value='$usu'>";
+			}else{
+				echo "<button id='BotonReserva' value='$Id' onclick='Liberar()'>Liberar</button>";
+				echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
+				echo "<input type='hidden' id='usu' value='$usu'>";
+			}
 			echo "</div>";
 			echo "<div class='descripcion'>";
 			$Nueva_var=utf8_encode($query["descripcion"]);

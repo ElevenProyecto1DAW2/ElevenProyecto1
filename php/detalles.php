@@ -6,6 +6,7 @@
 		<title>Reserva</title>
 	</head>
 	<body>
+		<button onclick="LogOut()">Log Out</button>
 		<div class="reserva_total">
 			<?php
 			$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');

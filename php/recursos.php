@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="../js/Funciones.js"></script>
 	</head>
 	<body>
+		<button onclick="LogOut()">Log Out</button>
 		<div class="total_recursos">
 			<div class="filtro">
 				<h1 style="text-align: center;">Bienvenido <?php echo "$_REQUEST[usu]"; ?>
@@ -79,6 +80,7 @@
 				</div>
 					<div class="filtrando">
 						<?php
+								$noentrar=true;
 								if (isset($_REQUEST["id"])) {
 									$IdUsu=$_REQUEST["id"];
 								}else {

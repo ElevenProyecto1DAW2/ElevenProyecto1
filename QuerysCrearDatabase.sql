@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2018 a las 16:35:36
+-- Tiempo de generación: 31-10-2018 a las 17:52:58
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyecto1eleven`
 --
+create database proyecto1eleven;
+use proyecto1eleven;
 
 -- --------------------------------------------------------
 
@@ -30,11 +32,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `equipos_sala` (
   `Id_equipo_sala` int(10) NOT NULL,
-  `tipo_equipo_sala` varchar(25) NOT NULL,
-  `equipo_sala` varchar(10) NOT NULL,
-  `Disponible` varchar(5) NOT NULL DEFAULT 'true',
-  `descripcion` varchar(255) DEFAULT NULL,
-  `foto` varchar(25) NOT NULL
+  `tipo_equipo_sala` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `equipo_sala` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `Disponible` varchar(5) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'true',
+  `descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `foto` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -42,24 +44,24 @@ CREATE TABLE `equipos_sala` (
 --
 
 INSERT INTO `equipos_sala` (`Id_equipo_sala`, `tipo_equipo_sala`, `equipo_sala`, `Disponible`, `descripcion`, `foto`) VALUES
-(1, 'Sala multidisciplinaria', 'sala', 'true', 'sala para hacer yoga, presentaciones, gimnasia y mas actividades', ''),
-(2, 'sala informatica', 'sala', 'true', 'sala para el aprendizaje informático.', ''),
-(3, 'sala multidisciplinaria', 'sala', 'true', 'sala para hacer yoga, presentaciones, gimnasia y mas actividades', ''),
-(4, 'sala multidisciplinaria', 'sala', 'true', 'sala para hacer yoga, presentaciones, gimnasia y mas actividades.', ''),
-(5, 'sala multidisciplinaria', 'sala', 'true', 'sala para hacer yoga, presentaciones, gimnasia y mas actividades.', ''),
-(6, 'sala informatica', 'sala', 'true', 'sala para el aprendizaje informático.', ''),
-(7, 'sala de reunion', 'sala', 'true', 'sala perfecta para hacer reuniones de equipos.', ''),
-(8, 'salón de actos', 'sala', 'true', 'Salón para hacer actos para un gran numero de personas', ''),
-(9, 'despacho para entrevistas', 'sala', 'true', 'despacho perfecto para hacer entrevistas.', ''),
-(10, 'despacho para entrevistas', 'sala', 'true', 'despacho perfecto para hacer entrevistas.\r\n', ''),
-(11, 'taller de cocina', 'sala', 'true', 'taller para realizar el aprendizaje del arte de la cocina', ''),
-(12, 'proyector', 'equipo', 'true', 'proyector portátil para mostrar todos los trabajos de un ordenador.', ''),
-(13, 'proyector', 'equipo', 'true', 'proyector portátil para mostrar todos los trabajos de un ordenador.', ''),
-(14, 'portátil', 'equipo', 'true', 'marca: toshiba\r\nalmacenamiento de memoria: 500 gb\r\nRAM: 4 gb\r\ntarjeta grafica: intel graphics hd\r\nprocesador: i5 4th Gen', ''),
-(15, 'portátil', 'equipo', 'true', 'marca: toshiba\r\nalmacenamiento de memoria: 500 gb\r\nRAM: 4 gb\r\ntarjeta grafica: intel graphics hd\r\nprocesador: i5 4th Gen', ''),
-(16, 'portátil', 'equipo', 'true', 'marca: toshiba\r\nalmacenamiento de memoria: 500 gb\r\nRAM: 4 gb\r\ntarjeta grafica: intel graphics hd\r\nprocesador: i5 4th Gen', ''),
-(17, 'móvil', 'equipo', 'true', 'tamaño de pantalla: 6 pulgadas\r\nmemoria de almacenamiento: 16 gb\r\nmemoria ram: 3 gb', ''),
-(18, 'móvil', 'equipo', 'true', 'tamaño de pantalla: 6 pulgadas\r\nmemoria de almacenamiento: 16 gb\r\nmemoria ram: 3 gb', '');
+(1, 'Sala multidisciplinaria', 'sala', 'true', 'sala para hacer yoga, presentaciones, gimnasia y mas actividades', '../fotos/foto_multidisciplinaria.jpg'),
+(2, 'Sala informatica', 'sala', 'true', 'sala para el aprendizaje informático.', '../fotos/foto_informatica.jpg'),
+(3, 'Sala multidisciplinaria', 'sala', 'true', 'sala para hacer yoga, presentaciones, gimnasia y mas actividades', '../fotos/foto_multidisciplinaria.jpg'),
+(4, 'Sala multidisciplinaria', 'sala', 'true', 'sala para hacer yoga, presentaciones, gimnasia y mas actividades.', '../fotos/foto_multidisciplinaria.jpg'),
+(5, 'Sala multidisciplinaria', 'sala', 'false', 'sala para hacer yoga, presentaciones, gimnasia y mas actividades.', '../fotos/foto_multidisciplinaria.jpg'),
+(6, 'Sala informatica', 'sala', 'true', 'sala para el aprendizaje inform?tico.', '../fotos/foto_informatica.jpg'),
+(7, 'Sala de reunion', 'sala', 'true', 'sala perfecta para hacer reuniones de equipos.', '../fotos/foto_reunion.jpg'),
+(8, 'Salon de actos', 'sala', 'false', 'Salón para hacer actos para un gran numero de personas', '../fotos/foto_salon_de_actos.jpg'),
+(9, 'Despacho para entrevistas', 'sala', 'true', 'despacho perfecto para hacer entrevistas.', '../fotos/foto_despacho_entrevistas.jpg'),
+(10, 'Despacho para entrevistas', 'sala', 'true', 'despacho perfecto para hacer entrevistas.\r\n', '../fotos/foto_despacho_entrevistas.jpg'),
+(11, 'Taller de cocina', 'sala', 'true', 'taller para realizar el aprendizaje del arte de la cocina', '../fotos/foto_taller_cocina.jpg'),
+(12, 'Proyector', 'equipo', 'false', 'proyector portátil para mostrar todos los trabajos de un ordenador.', '../fotos/foto_proyector.jpg'),
+(13, 'Proyector', 'equipo', 'true', 'proyector portátil para mostrar todos los trabajos de un ordenador.', '../fotos/foto_proyector.jpg'),
+(14, 'Portatil', 'equipo', 'true', 'marca: toshiba <br>\r\nalmacenamiento de memoria: 500 gb <br>\r\nRAM: 4 gb <br>\r\ntarjeta grafica: intel graphics hd <br>\r\nprocesador: i5 4th Gen', '../fotos/foto_portatil.jpg'),
+(15, 'Portatil', 'equipo', 'true', 'marca: toshiba <br>\r\nalmacenamiento de memoria: 500 gb <br>\r\nRAM: 4 gb <br>\r\ntarjeta grafica: intel graphics hd <br>\r\nprocesador: i5 4th Gen', '../fotos/foto_portatil.jpg'),
+(16, 'Portatil', 'equipo', 'true', 'marca: toshiba <br>\r\nalmacenamiento de memoria: 500 gb <br>\r\nRAM: 4 gb <br>\r\ntarjeta grafica: intel graphics hd <br>\r\nprocesador: i5 4th Gen', '../fotos/foto_portatil.jpg'),
+(17, 'Movil', 'equipo', 'true', 'tamaño de pantalla: 6 pulgadas <br>\r\nmemoria de almacenamiento: 16 gb <br>\r\nmemoria ram: 3 gb', '../fotos/foto_movil.jpg'),
+(18, 'Movil', 'equipo', 'true', 'tamaño de pantalla: 6 pulgadas <br>\r\nmemoria de almacenamiento: 16 gb <br>\r\nmemoria ram: 3 gb', '../fotos/foto_movil.jpg');
 
 -- --------------------------------------------------------
 
@@ -71,17 +73,18 @@ CREATE TABLE `incidencias` (
   `Id_incidencias` int(10) NOT NULL,
   `id_sala` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL,
-  `titulo` varchar(50) NOT NULL,
-  `descripcion` varchar(255) NOT NULL
+  `titulo` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `resuelta` varchar(5) NOT NULL DEFAULT 'false'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `incidencias`
 --
 
-INSERT INTO `incidencias` (`Id_incidencias`, `id_sala`, `id_usuario`, `titulo`, `descripcion`) VALUES
-(1, 1, 8, 'sala sucia', 'esta sucia hay que limpiarla'),
-(2, 13, 6, 'proyector roto', 'se ha caido el proyector y se ha caido ');
+INSERT INTO `incidencias` (`Id_incidencias`, `id_sala`, `id_usuario`, `titulo`, `descripcion`, `resuelta`) VALUES
+(3, 14, 7, 'El portatil no funciona correctamente', 'Como bien describo en el campo titulo, el portatil no quiere funcionar, ya que es una persona totalmente dotada de razon y se niega a trabajar', 'true'),
+(4, 4, 8, 'Sala desordenada', 'Unos vandalos se colaron dentro de la sala con sus vastagos y se dedicaron a hacer travesuras y desordenar la sala al grito de \"VITAS ES EL MEJOR!\"', 'false');
 
 -- --------------------------------------------------------
 
@@ -91,9 +94,9 @@ INSERT INTO `incidencias` (`Id_incidencias`, `id_sala`, `id_usuario`, `titulo`, 
 
 CREATE TABLE `usuario` (
   `id_Usuario` int(10) NOT NULL,
-  `Nombre_Usuario` varchar(20) NOT NULL,
-  `Contra_Usu` varchar(20) NOT NULL,
-  `TipoUsuario` varchar(20) NOT NULL DEFAULT 'Basico'
+  `Nombre_Usuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `Contra_Usu` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `TipoUsuario` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'Basico'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -103,7 +106,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id_Usuario`, `Nombre_Usuario`, `Contra_Usu`, `TipoUsuario`) VALUES
 (6, 'Eric', '1234', 'Basico'),
 (7, 'Adri', '1234', 'Basico'),
-(8, 'Dani', '1234', 'Basico');
+(8, 'Dani', '1234', 'Administrador');
 
 -- --------------------------------------------------------
 
@@ -118,6 +121,24 @@ CREATE TABLE `usuario_equipo_sala` (
   `fecha_ini` datetime NOT NULL,
   `fecha_fin` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario_equipo_sala`
+--
+
+INSERT INTO `usuario_equipo_sala` (`Id_usu_equipo_sala`, `id_usuario`, `id_equipo`, `fecha_ini`, `fecha_fin`) VALUES
+(4, 7, 1, '2018-10-30 16:02:31', '2018-10-30 20:33:08'),
+(17, 7, 3, '2018-10-30 16:23:02', '2018-10-31 17:26:47'),
+(18, 6, 2, '2018-10-30 16:48:20', '2018-10-31 17:31:02'),
+(19, 6, 6, '2018-10-30 16:53:17', '2018-10-31 17:31:05'),
+(20, 6, 12, '2018-10-30 17:43:38', '2018-10-31 17:31:09'),
+(21, 6, 4, '2018-10-30 18:00:01', '2018-10-31 17:31:13'),
+(27, 7, 1, '2018-10-30 20:42:31', '2018-10-30 20:42:35'),
+(28, 6, 1, '2018-10-31 17:31:40', '2018-10-31 17:31:43'),
+(29, 6, 1, '2018-10-31 17:35:23', '2018-10-31 17:35:34'),
+(30, 7, 12, '2018-10-31 17:43:20', NULL),
+(31, 6, 1, '2018-10-31 17:47:11', '2018-10-31 17:47:14'),
+(32, 6, 8, '2018-10-31 17:47:23', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -159,13 +180,13 @@ ALTER TABLE `usuario_equipo_sala`
 -- AUTO_INCREMENT de la tabla `equipos_sala`
 --
 ALTER TABLE `equipos_sala`
-  MODIFY `Id_equipo_sala` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id_equipo_sala` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `incidencias`
 --
 ALTER TABLE `incidencias`
-  MODIFY `Id_incidencias` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id_incidencias` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -177,7 +198,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario_equipo_sala`
 --
 ALTER TABLE `usuario_equipo_sala`
-  MODIFY `Id_usu_equipo_sala` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id_usu_equipo_sala` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restricciones para tablas volcadas

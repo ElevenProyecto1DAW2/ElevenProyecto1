@@ -32,3 +32,6 @@ function aparecer2(){
 function Reservados() {
 	window.location.assign('../php/reservados.php?usu='+document.getElementById("usu").value+'&IdUsu='+document.getElementById("IdUsu").value);
 }
+function LogOut(){
+	window.location.href='../index.php';
+}
