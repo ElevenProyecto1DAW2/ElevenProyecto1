@@ -23,6 +23,13 @@
 							<option value="noacabadas">no acabadas</option>
 						</select><br><br>
 						<input style="margin-left: 35%; margin-bottom: 5%;" type="submit" name="Filtrado" value="Filtrar">
+						<button style="margin-left: 29%; margin-bottom: 5%;" onclick="reservadas();return false;" id="BotonReservado" >Reservas</button>
+						<?php
+						$IdUsu=$_REQUEST['id'];
+						$usu=$_REQUEST['usu'];
+						echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
+						echo "<input type='hidden' id='usu' value='$usu'>";
+						?>
 					</form>
 				</div>
 

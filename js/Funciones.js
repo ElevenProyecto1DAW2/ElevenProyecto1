@@ -35,3 +35,10 @@ function Reservados() {
 function LogOut(){
 	window.location.href='../index.php';
 }
+function incidencia(){
+window.location.href='../php/form_incidencia.php?num='+document.getElementById("BotonIncidencia").value+'&usu='+document.getElementById("usu").value+'&IdUsu='+document.getElementById("IdUsu").value;
+
+}
+function reservadas(){
+	window.location.href='../php/reservadas.php?num='+document.getElementById("BotonReservado").value+'&usu='+document.getElementById("usu").value+'&IdUsu='+document.getElementById("IdUsu").value;
+}
