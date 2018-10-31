@@ -12,11 +12,13 @@ $query = mysqli_query($link, "SELECT * FROM usuario WHERE Nombre_Usuario LIKE '$
 $categoria=mysqli_fetch_array($query);
 if ($_REQUEST['user'] == $categoria['Nombre_Usuario'] && $_REQUEST['contra'] == $categoria['Contra_Usu']) {
 	if ($categoria['TipoUsuario']=="Administrador") {
+		$Id=$categoria["id_Usuario"];
 		$hola=$categoria["Nombre_Usuario"];
-		header("Location: recursosAdministrador.php?usu=$hola");
+		header("Location: recursosAdministrador.php?usu=$hola&id=$Id");
 	}else{
+		$Id=$categoria["id_Usuario"];
 		$hola=$categoria["Nombre_Usuario"];
-		header("Location: recursos.php?usu=$hola");
+		header("Location: recursos.php?usu=$hola&id=$Id");
 	}
 }
 ?>

@@ -43,6 +43,11 @@
 				echo "<p>".$Nueva_var."</p>";
 			echo "</div>";
 			}
+			echo "<div class='incidencia_boton'>";
+				echo "<button id='BotonIncidencia' value='$Id' onclick='incidencia()'>Poner Incidencia</button>";
+				echo "<input type='hidden' id='IdUsu' value='$IdUsu'>";
+				echo "<input type='hidden' id='usu' value='$usu'>";
+			echo "</div>";
 			?>
 		</div>
 
