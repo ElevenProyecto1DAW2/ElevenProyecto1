@@ -10,29 +10,16 @@
 	<body>
 		<div class="total_recursos">
 			<div class="filtro">
-				<h1 style="text-align: center;">Bienvenido <?php echo "$_REQUEST[usu]"; ?>
+				<h1 style="text-align: center;">Bienvenido Administrador
 				</h1>
 				<p>Incidencias nuevas</p>
 				<div class="filtronuevo">
 					<form method="POST" name="FiltroRecursos" action="recursosAdministrador.php">
 						<br>
-						<select style="margin-left: 5%; width: 90%; height: 20%;" name="Filtro" id="SeleccionSalaEquipo">
-							<option value="-"> - </option>
-							<?php
-								$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
-								if (!$link) {
-									echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-									echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-									echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-									exit;
-								}
-								$Sql="SELECT DISTINCT(tipo_equipo_sala) from equipos_sala";
-								$Sql2=mysqli_query($link,$Sql);
-								ForEach ($Sql2 as $query) {
-									echo "<option value='$query[tipo_equipo_sala]'>$query[tipo_equipo_sala]</option>";
-								}
-								echo "<input type='hidden' name='usu' value='$_REQUEST[usu]'>";
-							?>
+						<select name="Filtro4" style="margin-left: 5%; width: 90%; height: 20%;">
+							<option value="ambas">Ambas</option>
+							<option value="acabadas">acabadas</option>
+							<option value="noacabadas">no acabadas</option>
 						</select><br><br>
 						<input style="margin-left: 35%; margin-bottom: 5%;" type="submit" name="Filtrado" value="Filtrar">
 					</form>
@@ -40,24 +27,88 @@
 
 					<div class="filtrando">
 						<?php
-							
-								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
-								if (!$link) {
-								    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-								    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-								    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-								    exit;
+							if (isset($_REQUEST['Filtro4'])) {
+								if ($_REQUEST['Filtro4']=='ambas') {
+									$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+									if (!$link) {
+										echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+										echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+										echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+										exit;
+									}
+									$Sql="SELECT * from incidencias";
+									$Sql2=mysqli_query($link,$Sql);
+									ForEach ($Sql2 as $query) {
+										$incidencia=$query['Id_incidencias'];
+										$informacion=$query['Id_incidencias'];
+										if ($query['resuelta']=='true') {
+											echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:green; text-decoration:none; float: right;' href=''> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.hp?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion2.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+										} else{
+											echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:red; text-decoration:none; float: right;' href='resulta.proc.php?Id_incidencias=$query[Id_incidencias]'> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.php?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion2.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+										}
+
+									}
+								} elseif ($_REQUEST['Filtro4']=='acabadas') {
+									$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+									if (!$link) {
+										echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+										echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+										echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+										exit;
+									}
+									$Sql="SELECT * from incidencias where resuelta='true'";
+									$Sql2=mysqli_query($link,$Sql);
+									ForEach ($Sql2 as $query) {
+										$incidencia=$query['Id_incidencias'];
+										$informacion=$query['Id_incidencias'];
+										if ($query['resuelta']=='true') {
+											echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:green; text-decoration:none; float: right;' href=''> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.hp?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion2.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+										} else{
+											echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:red; text-decoration:none; float: right;' href='resulta.proc.php?Id_incidencias=$query[Id_incidencias]'> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.php?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion2.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+										}
+
+									}	
+								} elseif ($_REQUEST['Filtro4']=='noacabadas') {
+									$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+									if (!$link) {
+										echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+										echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+										echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+										exit;
+									}
+									$Sql="SELECT * from incidencias where resuelta='false'";
+									$Sql2=mysqli_query($link,$Sql);
+									ForEach ($Sql2 as $query) {
+										$incidencia=$query['Id_incidencias'];
+										$informacion=$query['Id_incidencias'];
+										if ($query['resuelta']=='true') {
+											echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:green; text-decoration:none; float: right;' href=''> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.hp?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion2.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+										} else{
+											echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:red; text-decoration:none; float: right;' href='resulta.proc.php?Id_incidencias=$query[Id_incidencias]'> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.php?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion2.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+										}
+									}	
 								}
-								$Sql="SELECT * FROM incidencias"; 
+
+							}else{
+									$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+									if (!$link) {
+										echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+										echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+										echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+										exit;
+									}
+								$Sql="SELECT * from incidencias";
 								$Sql2=mysqli_query($link,$Sql);
-								ForEach ($Sql2 as $query) {
-									$incidencia=$query['Id_incidencias'];
-									$informacion=$query['Id_incidencias'];
-									echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:red; text-decoration:none; float: right;' href='informacion.php;'> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.php?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
-
-								}	
-
-
+									ForEach ($Sql2 as $query) {
+										$incidencia=$query['Id_incidencias'];
+										$informacion=$query['Id_incidencias'];
+										if ($query['resuelta']=='true') {
+											echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:green; text-decoration:none; float: right;' href=''> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.hp?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion2.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+										} else{
+											echo "<p style='color:white; text-align:left;'>$query[Id_incidencias] $query[titulo] <a  style='color:red; text-decoration:none; float: right;' href='resulta.proc.php?Id_incidencias=$query[Id_incidencias]'> &nbsp<i class='fas fa-check'></i></a><a style='color:red;text-decoration:none; float:right; ' href='eliminar.proc.php?eliminar=$incidencia'> &nbsp <i class='fas fa-trash-alt'></i></a><a style='color:red;text-decoration:none;float:right; 'href='informacion2.php?Recurso=$informacion'> &nbsp<i class='fas fa-info-circle'></i></a></p>";
+										}
+									}	
+								}
 						?>
 					</div>
 				</div>

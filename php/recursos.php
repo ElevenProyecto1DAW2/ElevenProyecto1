@@ -124,6 +124,30 @@
 						?>
 					</div>
 				</div>
+					<div class="filtrando">
+						<?php
+								if (isset($_REQUEST['Filtro'])) {
+									$Filtro="$_REQUEST[Filtro]";
+									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
+								}else{
+									$Sql="SELECT * FROM equipos_sala";
+								}
+								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+								if (!$link) {
+								    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+								    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+								    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+								    exit;
+								}								
+								$Sql2=mysqli_query($link,$Sql);
+								ForEach ($Sql2 as $query) {
+									if ($query['Disponible']=='true') {
+										echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala]<br> <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'><input type='hidden' name='IdUsu' value='".$IdUsu."'></form><br/>";
+									}
+								}						
+						?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

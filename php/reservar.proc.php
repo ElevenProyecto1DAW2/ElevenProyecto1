@@ -26,4 +26,3 @@ ForEach($Sql as $query){
 	}
 }
 header("location:recursos.php?usu=$usu&IdUsu=$IdUsu");
-

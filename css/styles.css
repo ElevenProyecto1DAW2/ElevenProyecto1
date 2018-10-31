@@ -79,7 +79,7 @@ form{
 	border-width: 10%;
 	border-style: ridge;
 	padding-left: 0px;
-	padding-bottom: 10%;
+	padding-bottom: 28%;
 }
 .total_recursos {
 	width: 80%;
@@ -110,6 +110,7 @@ form{
 }
 .filtrando p {
 	margin-top: 0%;
+	padding-left: 15%;
 }
 .filtrando a {
 	margin-top: 0%;
