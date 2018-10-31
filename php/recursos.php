@@ -66,10 +66,67 @@
 								}
 								echo "<input type='hidden' name='usu' value='$_REQUEST[usu]'>";
 								echo "<input type='hidden' name='IdUsu' value='".$IdUsu."'>";
-							?>
-						</select><br><br>
-						<input style="margin-left: 35%; margin-bottom: 5%;" type="submit" name="Filtrado" value="Filtrar">
-					</form>
+							
+						echo "</select><br><br>";
+						echo "<input style='margin-left: 35%; margin-bottom: 5%;' type='submit' name='Filtrado' value='Filtrar'>";
+						echo "<form method='POST'>";
+							echo "<button style='margin-left: 25%;margin-bottom: 5%;' onclick='Reservados();return false'>Reservados</button>";
+							echo "<input type='hidden' id='usu' value='$_REQUEST[usu]'>";
+							echo "<input type='hidden' id='IdUsu' value='".$IdUsu."'>";
+						echo "</form>";
+					echo "</form>";
+					?>
+				</div>
+					<div class="filtrando">
+						<?php
+								if (isset($_REQUEST["id"])) {
+									$IdUsu=$_REQUEST["id"];
+								}else {
+									$IdUsu=$_REQUEST["IdUsu"];
+								}
+								if (isset($_REQUEST['Filtro'])) {
+									if ($_REQUEST['Filtro']=="-") {
+										$Sql="SELECT * FROM equipos_sala";
+										$_REQUEST['Filtro']="";
+									}else {
+									$Filtro="$_REQUEST[Filtro]";
+									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
+										$noentrar=false;
+									$_REQUEST['Filtro']="";
+									}
+								}else{
+									$Sql="SELECT * FROM equipos_sala";
+									$_REQUEST['Filtro']="";
+								}
+								if ((isset($_REQUEST['Filtro3'])) && ($noentrar==true)) {
+									if ($_REQUEST['Filtro3']=="-") {
+										$Sql="SELECT * FROM equipos_sala";
+										$_REQUEST['Filtro3']="";
+									}else {
+									$Filtro="$_REQUEST[Filtro3]";
+									$Sql="SELECT * FROM equipos_sala where tipo_equipo_sala='".$Filtro."'";
+									$_REQUEST['Filtro3']="";
+									}
+								}
+								$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+								if (!$link) {
+								    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+								    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+								    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+								    exit;
+								}								
+								$Sql2=mysqli_query($link,$Sql);
+								if ((mysqli_num_rows($Sql2))>0) {
+									ForEach ($Sql2 as $query) {
+										if ($query['Disponible']=='true') {
+											echo "<form style='border:none' action='Reserva.php' method='POST'><p color='white'>$query[tipo_equipo_sala]<br> <input class='botonsito' type='submit' name='Enviar' value='Más Información'></p><input type='hidden' name='Recurso' value='$query[Id_equipo_sala]'><input type='hidden' name='Usuario' value='$_REQUEST[usu]'><input type='hidden' name='IdUsu' value='".$IdUsu."'></form><br/>";
+										}	
+									}
+								}else{
+									echo "<p>No Hay recursos disponibles en este momento</p>";
+								}
+						?>
+					</div>
 				</div>
 					<div class="filtrando">
 						<?php
