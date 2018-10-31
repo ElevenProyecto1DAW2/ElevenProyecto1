@@ -9,7 +9,7 @@
 		<button onclick="LogOut()">Log Out</button>
 		<div class="reserva_total">
 			<?php
-			$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+			$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
 			if (!$link) {
 			    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
 			    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;

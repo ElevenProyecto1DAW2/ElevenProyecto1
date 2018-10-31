@@ -37,12 +37,12 @@
 						<?php
 							if (isset($_REQUEST['Filtro4'])) {
 								if ($_REQUEST['Filtro4']=='ambas') {
-									$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+									$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
 									if (!$link) {
-										echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-										echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-										echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-										exit;
+									    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+									    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+									    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+									    exit;
 									}
 									$Sql="SELECT * from incidencias";
 									$Sql2=mysqli_query($link,$Sql);
@@ -57,12 +57,12 @@
 
 									}
 								} elseif ($_REQUEST['Filtro4']=='acabadas') {
-									$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+									$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
 									if (!$link) {
-										echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-										echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-										echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-										exit;
+									    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+									    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+									    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+									    exit;
 									}
 									$Sql="SELECT * from incidencias where resuelta='true'";
 									$Sql2=mysqli_query($link,$Sql);
@@ -77,12 +77,12 @@
 
 									}	
 								} elseif ($_REQUEST['Filtro4']=='noacabadas') {
-									$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
+									$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
 									if (!$link) {
-										echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-										echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-										echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-										exit;
+									    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+									    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+									    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+									    exit;
 									}
 									$Sql="SELECT * from incidencias where resuelta='false'";
 									$Sql2=mysqli_query($link,$Sql);
@@ -98,13 +98,13 @@
 								}
 
 							}else{
-									$link = mysqli_connect('172.24.17.192', 'root', '1234', 'proyecto1eleven');
-									if (!$link) {
-										echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-										echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
-										echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-										exit;
-									}
+								$link = mysqli_connect('localhost', 'root', '', 'proyecto1eleven');
+								if (!$link) {
+								    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+								    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+								    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+								    exit;
+								}
 								$Sql="SELECT * from incidencias";
 								$Sql2=mysqli_query($link,$Sql);
 									ForEach ($Sql2 as $query) {
